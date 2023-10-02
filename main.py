@@ -46,7 +46,7 @@ class Tree():
         legs: list[Node] = [l for l in [root.l_leg, root.p_leg, root.r_leg] if l is not None]
         
         for leg in legs:
-            if leg.triad.name == self.target.name:
+            if leg.end:
                 return [leg]
             else:
                 found = self.traverse(leg, searched)
@@ -64,8 +64,8 @@ def print_solution(solution: list[Node]):
         print(line)
 
 if __name__ == '__main__':
-    start = Triad('E')
-    target = Triad('F')
+    start = Triad('C')
+    target = Triad('B', False)
     solver = Tree(start, target)
     solver.build()
     solution = [solver.root] + solver.traverse(solver.root)
